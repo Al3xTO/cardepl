@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Послуги</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin-bottom: 0;
+            background-color: #000;
+            color: #fff;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 0.5em;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 70px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 1em;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            visibility: hidden;
+            opacity: 0;
+            z-index: 1;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        header:hover nav {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            display: block; 
+            padding: 5px; 
+            border-radius: 5px;
+            transition: background-color 0.3s ease; 
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1); 
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+            background-color: #000;
+        }
+
+        main h2 {
+            color: #fff;
+            padding: 10px;
+            display: inline-block;
+            margin-bottom: 20px;
+            border: none;
+        }
+
+        main ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        main li {
+            margin-bottom: 20px;
+            border: 2px solid #fff;
+            padding: 10px;
+        }
+
+        main li strong {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #fff;
+            padding-bottom: 5px;
+        }
+
+        main li p {
+            margin-top: 10px;
+        }
+
+        main li p.price {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        footer p {
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        footer .address {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .copied-notification {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            animation: fadeOut 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">&#9776;</div>
+        <h1><a href="auto.html" style="color: #fff; text-decoration: none;">Detailing Car UA</a></h1>
+        <nav>
+            <ul>
+                <li><a href="about.html">Про нас</a></li>
+                <li><a href="services.html">Послуги</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Послуги</h2>
+        <ul>
+            <li>
+                <strong>Миття кузова:</strong>
+                <p>Відновлення блиску та бездоганності вашого авто. Наші фахівці використовують передові технології, щоб кожна деталь сяяла.</p>
+                <p class="price">Ціна - 350₴</p>
+            </li>
+            <li>
+                <strong>Полірування:</strong>
+                <p>Професійне полірування для захисту лакофарбового покриття від зовнішніх впливів та забезпечення довготривалого блиску.</p>
+                <p class="price">Ціна - 2500₴</p>
+            </li>
+            <li>
+                <strong>Чистка салону:</strong>
+                <p>Комплексна забота про ваш комфорт всередині автомобіля. Відновлення свіжості та бездоганності салону.</p>
+                <p class="price">Ціна - 200₴</p>
+            </li>
+        </ul>
+    </main>
+
+    <footer>
+        <p onclick="copyToClipboard('+380-(96)-111-11-11')"><span class="phone-icon">&#9742;</span>Телефон: +380-(96)-111-11-11</p> |
+        <p onclick="copyToClipboard('car.detailing46@gmail.com')"><span class="email-icon">&#9993;</span>Електронна пошта: car.detailing46@gmail.com</p>
+        <p class="address" onclick="copyToClipboard('проспект Соборності 15, м. Київ')">Адреса: проспект Соборності 15, м. Київ</p>
+    </footer>
+
+    <div id="copiedNotification" class="copied-notification">Скопійовано</div>
+
+    <script>
+        function copyToClipboard(text) {
+            var textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+
+            var copiedNotification = document.getElementById('copiedNotification');
+            copiedNotification.style.display = 'block';
+            setTimeout(function () {
+                copiedNotification.style.display = 'none';
+            }, 1000);
+        }
+    </script>
+
+</body>
+</html>
