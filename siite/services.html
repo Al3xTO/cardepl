@@ -138,7 +138,7 @@
         footer .address {
             display: block;
             color: #fff;
-            text-decoration: none; /* Убирает подчеркивание для ссылок */
+            text-decoration: none; 
         }
 
         .copied-notification {
@@ -264,9 +264,7 @@
             var nickname = document.getElementById('nickname').value;
             var phone = document.getElementById('phone').value;
 
-            // Перевірка обов'язкових полів
             if (name.trim() === '' || phone.trim() === '') {
-                // Повідомлення "Не всі обов'язкові дані було введено"
                 var notFilledNotification = document.getElementById('copiedNotification');
                 notFilledNotification.innerHTML = "Не всі обов'язкові дані було введено";
                 notFilledNotification.style.display = 'block';
@@ -274,10 +272,8 @@
                     notFilledNotification.style.display = 'none';
                 }, 3000);
             } else {
-                // Перевірка телефонного номеру
                 var phoneRegex = /^[0-9]{9,12}$/;
                 if (!phone.match(phoneRegex)) {
-                    // Повідомлення про невірний номер
                     var invalidPhoneNotification = document.getElementById('copiedNotification');
                     invalidPhoneNotification.innerHTML = "Введено невірний номер телефону";
                     invalidPhoneNotification.style.display = 'block';
@@ -285,17 +281,12 @@
                         invalidPhoneNotification.style.display = 'none';
                     }, 3000);
                 } else {
-                    // Якщо всі дані введено правильно, показати повідомлення "відправлено"
                     var sentNotification = document.getElementById('copiedNotification');
                     sentNotification.innerHTML = "Відправлено";
                     sentNotification.style.display = 'block';
                     setTimeout(function () {
                         sentNotification.style.display = 'none';
                     }, 3000);
-
-                    // Тут ви можете використовувати значення полів для подальшої обробки (наприклад, відправка на сервер)
-
-                    // Закрити форму після відправки
                     closeForm();
                 }
             }
